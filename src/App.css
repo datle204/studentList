@@ -68,9 +68,9 @@ h1.title {
 #add-student {
   width: 150px;
   height: 30px;
-  background-color: #0cbd0c;
+  background-color: #10d210cf;
   border: 1px;
-  color: white;
+  color: #252525;
   border-radius: 5px;
   margin-bottom: 10px;
   font-size: 16px;
@@ -166,7 +166,7 @@ span {
 }
 
 #back-button:hover {
-  background-color: #252525;
+  background-color: #f58551;
 }
 
 #save-button {
@@ -178,9 +178,9 @@ span {
 }
 
 #save-button:hover {
-  background-color: green;
+  background-color: #88e288c2;
 }
-.button-box i {
+.button-box  {
   color: white;
   font-size: 16px;
 }
@@ -188,21 +188,36 @@ span {
 #edit-button {
   width: 50%;
   height: 40px;
+  padding: 10px;
   background-color: #10d210cf;
   border: 1px;
   border-radius: 5px;
 }
 
-#edit-button:hover {
-  background-color: green;
+
+
+.edit, .delete{
+  width: 100px;
+  margin-right: 10px;
+  padding: 6px;
 }
 
-.edit-box {
-  width: 70%;
-  margin: 50px auto;
-  /* display:none; */
+.edit {
+  background-color: #10d210cf;
+  border: none;
 }
 
+
+
+.delete{
+  background-color: #ff9595;
+  border: none;
+  
+}
+
+.delete:hover{
+  background-color: red;
+}
 /* MODAL */
 
 #modal{
@@ -257,22 +272,22 @@ span {
   margin-top: 50px;
 }
 
-button::after {
-  position: relative;
-  right: 0;
-  content: " \276f";
-  transition: all 0.15s linear;
-}
 
 button:hover {
+  
   background-color: #f58551;
   border-color: #f58551;
 }
 
-button:hover::after {
-  right: -5px;
-}
 
 button:focus {
   outline: none;
+}
+
+#back-button{
+  margin-right: 10px;
+}
+
+.edit:hover{
+  background-color: #85e89f;
 }

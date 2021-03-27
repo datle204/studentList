@@ -28,10 +28,10 @@ export default function ModalAdd({ backToList, saveNewStudent, updateName,update
       </form>
       <div className="button-box">
         <button id="back-button" onClick={backToList}>
-          <i className="fas fa-chevron-left"> Back </i>
+          Back 
         </button>
-        <button id="save-button">
-          <i className="fas fa-save" onClick={saveNewStudent}> Save</i>
+        <button id="save-button" onClick={saveNewStudent}>
+          Save
         </button>
       </div>
     </div>

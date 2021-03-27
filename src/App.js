@@ -74,8 +74,8 @@ function App() {
       <td>{student.email}</td>
       <td>{student.phone}</td>
       <td>
-        <button class="edit" id = "" ><i class="fas fa-edit"> Chỉnh sửa</i></button> |
-        <button class="delete" id=""><i class="fas fa-trash-alt" onClick={() => openModalDelete(student.id)}> Xóa</i></button>
+        <button class="edit" >Chỉnh sửa</button> 
+        <button class="delete" onClick={() => openModalDelete(student.id)}> Xóa</button>
       </td>
     </tr>
     
@@ -144,8 +144,8 @@ function App() {
     <main>
     <div className="container">
       <h1 className="title">Danh sách học viên</h1>
-      <button id="add-student">
-        <i className="fas fa-plus-circle" onClick={openModalAdd}> Thêm học viên</i>
+      <button id="add-student" onClick={openModalAdd}>
+          Thêm học viên
       </button>
       <div>
         <table>
