@@ -37,7 +37,7 @@ const STUDENTLIST = [
 
 function App() {
 
-  const [studentList, setStudentList] = useState(STUDENTLIST);
+  const [students, setStudentList] = useState(STUDENTLIST);
   const [modalAdd, modalAddVisible] = useState(false);
   const [modalDelete, modalDeleteVisible] = useState(false);
   const [buttonId, setButtonId] = useState();
@@ -49,7 +49,6 @@ function App() {
 
   function updateName(event){
     const inputNameValue = event.target.value;
-    console.log(inputNameValue);
     setInputName(inputNameValue);
   }
   function updateDob(event){
@@ -66,7 +65,7 @@ function App() {
   }
 
 
-  const studentlist = studentList.map((student) => (
+  const studentlist = students.map((student) => (
     
     <tr key={student.id}>
       <td>{student.name}</td>
@@ -74,8 +73,8 @@ function App() {
       <td>{student.email}</td>
       <td>{student.phone}</td>
       <td>
-        <button class="edit" >Chỉnh sửa</button> 
-        <button class="delete" onClick={() => openModalDelete(student.id)}> Xóa</button>
+        <button className="edit" >Chỉnh sửa</button> 
+        <button className="delete" onClick={() => openModalDelete(student.id)}> Xóa</button>
       </td>
     </tr>
     
@@ -89,7 +88,7 @@ function App() {
 
   // Tắt modal thêm sinh viên
   function backToList(){
-    setStudentList(studentList);
+    setStudentList(students);
     modalAddVisible(false);
   }
 
@@ -100,19 +99,21 @@ function App() {
   // Thêm sinh viên
   function saveNewStudent(){
     
-    setNewStudentId(newStudentId+1);
+    let newId = newStudentId+1;
+    setNewStudentId(newId)
 
     let newStudent = 
     
     {
-      id: newStudentId,
+      id: newId,
       name : inputName,
       dob : inputDob,
       email : inputEmail,
       phone : inputPhone
     }
     
-    studentList.unshift(newStudent);
+    students.unshift(newStudent);
+    console.log(students);
     // setStudentList(studentList);
     modalAddVisible(false);
   }
@@ -125,7 +126,7 @@ function App() {
 
   // Confirm xóa sinh viên
   function confirmRemove(){
-    const newStudentList = studentList.filter(
+    const newStudentList = students.filter(
       (student) => student.id !== buttonId
     );
 

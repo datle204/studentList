@@ -1,26 +1,26 @@
 export default function ModalAdd({ backToList, saveNewStudent, updateName,updateDob,updateEmail,updatePhone}) {
   return (
     <div className="container">
-      <form action="/" id="new" >
+      <form>
         <h1 className="create-list-title">Thêm mới học viên</h1>
         <div className="row">
-          <label HTMLfor="name">
+          <label htmlFor="name">
             Họ tên <span> *</span>
           </label>
           <input type="text" id="name" defaultValue="" onChange={(event) => updateName(event)} required />
         </div>
         <div className="row">
-          <label for="yearOfBirth">Năm sinh</label>
+          <label htmlFor="yearOfBirth">Năm sinh</label>
           <input type="text" id="dob" defaultValue=""  onChange={(event) => updateDob(event)} />
         </div>
         <div className="row">
-          <label for="email">
+          <label htmlFor="email">
             Email <span> *</span>
           </label>
           <input type="text" id="email" defaultValue=""   onChange={(event) => updateEmail(event)} required />
         </div>
         <div className="row">
-          <label for="phone">
+          <label htmlFor="phone">
             Phone <span> *</span>
           </label>
           <input type="tel" id="phone" defaultValue=""  onChange={(event) => updatePhone(event)} required />
