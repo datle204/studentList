@@ -22,7 +22,7 @@ function ModalEdit({ Button, Modal, show, handleClose,inputNameEdit, inputDobEdi
               <label htmlFor="email">
                 Email <span> *</span>
               </label>
-              <input type="text"  defaultValue={inputEmailEdit} onChange={(event) => updateEmailEdit(event)}/>
+              <input type="text"  defaultValue={inputEmailEdit} onChange={(event) => updateEmailEdit(event)} />
             </div>
             <div className="row">
               <label htmlFor="phone">
