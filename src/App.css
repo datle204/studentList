@@ -291,3 +291,7 @@ button:focus {
 .edit:hover{
   background-color: #85e89f;
 }
+
+.wrap{
+  margin: 20px;
+}

@@ -2,6 +2,9 @@ import "./App.css";
 import { useState } from "react";
 import ModalAdd from "./component/ModalAdd";
 import ModalDelete from "./component/ModalDelete";
+import ModalEdit from "./component/ModalEdit";
+import {Button, Modal} from 'react-bootstrap';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const STUDENTLIST = [
   {
@@ -40,8 +43,10 @@ function App() {
   const [students, setStudentList] = useState(STUDENTLIST);
   const [modalAdd, modalAddVisible] = useState(false);
   const [modalDelete, modalDeleteVisible] = useState(false);
-  const [buttonId, setButtonId] = useState();
+  const [buttonDeleteId, setButtonDeleteId] = useState();
 
+
+  // Tạo mới
   const [inputName, setInputName] = useState();
   const [inputDob, setInputDob] = useState();
   const [inputEmail, setInputEmail] = useState();
@@ -51,6 +56,7 @@ function App() {
     const inputNameValue = event.target.value;
     setInputName(inputNameValue);
   }
+
   function updateDob(event){
     const inputDobValue= event.target.value;
     setInputDob(inputDobValue);
@@ -64,6 +70,31 @@ function App() {
     setInputPhone(inputPhoneValue);
   }
 
+  // Chỉnh sửa 
+  // Dùng map hoặc vòng lặp for
+
+  const [inputNameEdit, setInputNameEdit] = useState();
+  const [inputDobEdit, setInputDobEdit] = useState();
+  const [inputEmailEdit, setInputEmailEdit] = useState();
+  const [inputPhoneEdit, setInputPhoneEdit] = useState();
+
+  function updateNameEdit(event){
+    const inputNameValueEdit = event.target.value;
+    setInputNameEdit(inputNameValueEdit);
+  }
+  function updateDobEdit(event){
+    const inputDobValueEdit= event.target.value;
+    setInputDobEdit(inputDobValueEdit);
+  }
+  function updateEmailEdit(event){
+    const inputEmailValueEdit= event.target.value;
+    setInputEmailEdit(inputEmailValueEdit);
+  }
+  function updatePhoneEdit(event){
+    const inputPhoneValueEdit= event.target.value;
+    setInputPhoneEdit(inputPhoneValueEdit);
+  }
+
 
   const studentlist = students.map((student) => (
     
@@ -73,11 +104,10 @@ function App() {
       <td>{student.email}</td>
       <td>{student.phone}</td>
       <td>
-        <button className="edit" >Chỉnh sửa</button> 
+        <button className="edit" onClick={() => handleShow(student.id)}>Chỉnh sửa</button> 
         <button className="delete" onClick={() => openModalDelete(student.id)}> Xóa</button>
       </td>
     </tr>
-    
     
   ));
 
@@ -94,16 +124,13 @@ function App() {
 
   const [newStudentId, setNewStudentId] = useState(4);
  
-
-
   // Thêm sinh viên
   function saveNewStudent(){
     
     let newId = newStudentId+1;
-    setNewStudentId(newId)
+    setNewStudentId(newId);
 
     let newStudent = 
-    
     {
       id: newId,
       name : inputName,
@@ -114,20 +141,19 @@ function App() {
     
     students.unshift(newStudent);
     console.log(students);
-    // setStudentList(studentList);
     modalAddVisible(false);
   }
 
   // Mở modal xóa sinh viên
   function openModalDelete(studentId){
-    setButtonId(studentId)
+    setButtonDeleteId(studentId)
     modalDeleteVisible(true);
   }
 
   // Confirm xóa sinh viên
   function confirmRemove(){
     const newStudentList = students.filter(
-      (student) => student.id !== buttonId
+      (student) => student.id !== buttonDeleteId
     );
 
     setStudentList(newStudentList);
@@ -139,7 +165,46 @@ function App() {
     modalDeleteVisible(false);
   }
 
+  // Chỉnh sửa thông tin sinh viên
 
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+
+  const [editStudentId, setEditStudentId] = useState();
+
+  function handleShow(studentID){
+    console.log(studentID);
+    const index = studentID-1;
+    setEditStudentId(studentID);
+    // console.log(editStudent);
+    console.log(students[index]);
+    setInputNameEdit(students[index].name);
+    setInputDobEdit(students[index].dob);
+    setInputEmailEdit(students[index].email);
+    setInputPhoneEdit(students[index].phone);
+
+    setShow(true);
+  }
+
+
+
+  function handleEdit(){
+
+    let index = students.findIndex((student) => student.id === editStudentId);
+    if (index > -1) {
+      let newStudentList = [...students];
+      newStudentList[index].name = inputNameEdit;
+      newStudentList[index].dob = inputDobEdit;
+      newStudentList[index].email = inputEmailEdit;
+      newStudentList[index].phone = inputPhoneEdit;
+
+      setStudentList(newStudentList);
+
+    }
+
+    console.log(students);
+    setShow(false);
+  }
 
   return (
     <main>
@@ -180,6 +245,26 @@ function App() {
         message="Bạn có muốn xóa sinh viên này không?" 
         confirmRemove={confirmRemove}
         cancelRemove={cancelRemove}/>
+      }
+
+      {
+        show && <ModalEdit
+        Button={Button}
+        Modal={Modal}
+        show ={show}
+        handleClose ={handleClose}
+        students={students}
+        updateNameEdit = {updateNameEdit}
+        updateDobEdit = {updateDobEdit}
+        updateEmailEdit = {updateEmailEdit}
+        updatePhoneEdit = {updatePhoneEdit}
+        handleEdit={handleEdit}
+        inputNameEdit={inputNameEdit}
+        inputDobEdit={inputDobEdit}
+        inputEmailEdit={inputEmailEdit}
+        inputPhoneEdit={inputPhoneEdit}
+        
+        />
       }
 
     </div>
