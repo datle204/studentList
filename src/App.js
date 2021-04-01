@@ -7,44 +7,44 @@ import { Button, Modal } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../node_modules/font-awesome/css/font-awesome.min.css";
 
-const STUDENTLIST = [
-  {
-    id: 1,
-    name: "Hieu",
-    dob: "20/02/1994",
-    email: "ABC@gmail.com",
-    phone: "01242433434",
-  },
-  {
-    id: 2,
-    name: "Dat",
-    dob: "20/02/1994",
-    email: "ABC@gmail.com",
-    phone: "01242433434",
-  },
-  {
-    id: 3,
-    name: "Dung",
-    dob: "20/02/1994",
-    email: "ABC@gmail.com",
-    phone: "01242433434",
-  },
-  {
-    id: 4,
-    name: "Huy",
-    dob: "20/02/1994",
-    email: "ABC@gmail.com",
-    phone: "01242433434",
-  },
-];
+// const STUDENTLIST = [
+//   {
+//     id: 1,
+//     name: "Hieu",
+//     dob: "20/02/1994",
+//     email: "ABC@gmail.com",
+//     phone: "01242433434",
+//   },
+//   {
+//     id: 2,
+//     name: "Dat",
+//     dob: "20/02/1994",
+//     email: "ABC@gmail.com",
+//     phone: "01242433434",
+//   },
+//   {
+//     id: 3,
+//     name: "Dung",
+//     dob: "20/02/1994",
+//     email: "ABC@gmail.com",
+//     phone: "01242433434",
+//   },
+//   {
+//     id: 4,
+//     name: "Huy",
+//     dob: "20/02/1994",
+//     email: "ABC@gmail.com",
+//     phone: "01242433434",
+//   },
+// ];
 
 function App() {
-  // const [users, setUsers] = useState();
-  const [students, setStudentList] = useState(STUDENTLIST);
+ 
+  const [students, setStudentList] = useState([]);
   useEffect(() =>{
-    console.log("component did mounted");
+    
     async function getUsers(){
-      const res = await fetch("https://studentlist2020.herokuapp.com/");
+      const res = await fetch("https://studentlist2020.herokuapp.com/users");
       const data = await res.json();
       setStudentList(data);
     }
