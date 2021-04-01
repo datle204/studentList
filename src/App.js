@@ -171,12 +171,18 @@ function App() {
   const [editStudentId, setEditStudentId] = useState();
 
   function handleShow(studentID) {
-    const index = studentID - 1;
-    setEditStudentId(studentID);
-    setInputNameEdit(students[index].name);
-    setInputDobEdit(students[index].dob);
-    setInputEmailEdit(students[index].email);
-    setInputPhoneEdit(students[index].phone);
+
+    let index = students.findIndex((student) => student.id === studentID);
+    if (index > -1) {
+      let newStudent = [...students];
+      setEditStudentId(studentID);
+      setInputNameEdit(newStudent[index].name);
+      setInputDobEdit(newStudent[index].dob);
+      setInputEmailEdit(newStudent[index].email);
+      setInputPhoneEdit(newStudent[index].phone);
+    }
+    // const index = studentID - 1;
+    
 
     setShow(true);
   }
