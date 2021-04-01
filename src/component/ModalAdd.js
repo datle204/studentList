@@ -1,4 +1,4 @@
-export default function ModalAdd({ backToList, saveNewStudent, updateName,updateDob,updateEmail,updatePhone}) {
+export default function ModalAdd({ backToList, saveNewStudent, updateName,updateDob,updateEmail,updatePhone, inputName}) {
   return (
     <div className="container">
       <form>
@@ -7,7 +7,7 @@ export default function ModalAdd({ backToList, saveNewStudent, updateName,update
           <label htmlFor="name">
             Họ tên <span> *</span>
           </label>
-          <input type="text" id="name" defaultValue="" onChange={(event) => updateName(event)} required />
+          <input type="text" id="name" defaultValue="" onChange={(event) => updateName(event)} />
         </div>
         <div className="row">
           <label htmlFor="yearOfBirth">Năm sinh</label>
@@ -17,22 +17,31 @@ export default function ModalAdd({ backToList, saveNewStudent, updateName,update
           <label htmlFor="email">
             Email <span> *</span>
           </label>
-          <input type="text" id="email" defaultValue=""   onChange={(event) => updateEmail(event)} required />
+          <input type="text" id="email" defaultValue=""   onChange={(event) => updateEmail(event)} />
         </div>
         <div className="row">
           <label htmlFor="phone">
             Phone <span> *</span>
           </label>
-          <input type="tel" id="phone" defaultValue=""  onChange={(event) => updatePhone(event)} required />
+          <input type="tel" id="phone" defaultValue=""  onChange={(event) => updatePhone(event)} />
         </div>
       </form>
       <div className="button-box">
         <button id="back-button" onClick={backToList}>
           Back 
         </button>
-        <button id="save-button" onClick={saveNewStudent}>
-          Save
-        </button>
+        {
+          inputName === undefined || inputName === ""?(
+            <button id="save-button" onClick={saveNewStudent} disabled>
+               Save
+            </button>
+          ):(
+            <button id="save-button" onClick={saveNewStudent}>
+            Save
+          </button>
+          )
+        }
+       
       </div>
     </div>
   );

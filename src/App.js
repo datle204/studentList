@@ -1,5 +1,5 @@
 import "./App.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import ModalAdd from "./component/ModalAdd";
 import ModalDelete from "./component/ModalDelete";
 import ModalEdit from "./component/ModalEdit";
@@ -39,7 +39,21 @@ const STUDENTLIST = [
 ];
 
 function App() {
+  // const [users, setUsers] = useState();
   const [students, setStudentList] = useState(STUDENTLIST);
+  useEffect(() =>{
+    console.log("component did mounted");
+    async function getUsers(){
+      const res = await fetch("https://studentlist2020.herokuapp.com/");
+      const data = await res.json();
+      setStudentList(data);
+    }
+    getUsers();
+
+  }, []);
+
+
+  
   const [modalAdd, modalAddVisible] = useState(false);
   const [modalDelete, modalDeleteVisible] = useState(false);
   const [buttonDeleteId, setButtonDeleteId] = useState();
@@ -113,6 +127,7 @@ function App() {
 
   // Mở modal thêm sinh viên
   function openModalAdd() {
+    
     modalAddVisible(true);
   }
 
@@ -122,12 +137,20 @@ function App() {
     modalAddVisible(false);
   }
 
-  const [newStudentId, setNewStudentId] = useState(4);
+  const [newStudentId, setNewStudentId] = useState(5);
+  
+  const [disableBtn, setDisableBtn] = useState(true);
 
   // Thêm sinh viên
   function saveNewStudent() {
     let newId = newStudentId + 1;
     setNewStudentId(newId);
+  
+
+    if(inputName !== "undefined"){
+      setDisableBtn(false);
+      console.log(disableBtn);
+    }
 
     let newStudent = {
       id: newId,
@@ -181,8 +204,6 @@ function App() {
       setInputEmailEdit(newStudent[index].email);
       setInputPhoneEdit(newStudent[index].phone);
     }
-    // const index = studentID - 1;
-    
 
     setShow(true);
   }
@@ -251,6 +272,9 @@ function App() {
             updatePhone={updatePhone}
             backToList={backToList}
             saveNewStudent={saveNewStudent}
+            disableBtn={disableBtn}
+            inputName={inputName}
+            
           />
         )}
         {modalDelete && (
