@@ -16,7 +16,7 @@ function App() {
 
   useEffect(() => {
     async function getUsers() {
-      const res = await fetch("http://localhost:3000/users");
+      const res = await fetch("https://studentlist2020.herokuapp.com/users");
       const data = await res.json();
       setStudentList(data);
     }
@@ -24,7 +24,7 @@ function App() {
   }, []);
 
   async function setItem(item) {
-    return fetch("http://localhost:3000/users", {
+    return fetch("https://studentlist2020.herokuapp.com/users", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -34,13 +34,13 @@ function App() {
   }
 
   async function deleteItem(userDeleteId) {
-    return fetch(`http://localhost:3000/users/${userDeleteId}`, {
+    return fetch(`https://studentlist2020.herokuapp.com/users/${userDeleteId}`, {
       method: "DELETE",
     }).then((res) => res.json());
   }
 
   async function editItem(item) {
-    return fetch(`http://localhost:3000/users/${editStudentId}`, {
+    return fetch(`https://studentlist2020.herokuapp.com/users/${editStudentId}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
