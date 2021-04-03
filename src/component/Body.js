@@ -1,4 +1,4 @@
-export default function Body({ students, openModal, openModalDelete }) {
+export default function Body({ students, openModal, openModalDelete, sortName }) {
   const studentList = students.map((student) => (
     <tr key={student.id}>
       <td>{student.name}</td>
@@ -32,7 +32,7 @@ export default function Body({ students, openModal, openModalDelete }) {
           <tr>
             <th>
               Họ tên
-              <button className="fa fa-sort"></button>
+              <button className="fa fa-sort" onClick={sortName}></button>
             </th>
             <th>Năm sinh</th>
             <th>Email</th>

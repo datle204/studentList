@@ -124,12 +124,58 @@ function App() {
     setShowModal(false);
   }
 
+  const [checkSort, setCheckSort] = useState(false);
+  
+  function sortName(){
+    let sortStudents = [...students];
+    if(checkSort === false){
+      sortStudents.sort(function(a,b){
+        let nameA = a.name.toLowerCase();
+        let nameB = b.name.toLowerCase();
+       
+        if(nameA > nameB){
+          return -1;
+        }
+        else if(nameA < nameB){
+          return 1;
+        }
+        else{
+          return 0;
+        }
+      })
+      setCheckSort(true);
+      setStudentList(sortStudents);
+    }
+    if(checkSort===true){
+
+      sortStudents.sort(function(a,b){
+        let nameA = a.name.toLowerCase();
+        let nameB = b.name.toLowerCase();
+       
+        if(nameA > nameB){
+          return 1;
+        }
+        else if(nameA < nameB){
+          return -1;
+        }
+        else{
+          return 0;
+        }
+      })
+      setCheckSort(false);
+      setStudentList(sortStudents);
+
+    }
+    
+  }
+
   return (
     <main>
       <Body
         students={students}
         openModalDelete={openModalDelete}
         openModal={openModal}
+        sortName={sortName}
       />
       <FormModal
         visible={showModal}
