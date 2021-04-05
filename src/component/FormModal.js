@@ -6,7 +6,6 @@ export default function FormModal({
   title,
   closeModal,
   handleSave,
-  newStudentId,
   name,
   dob,
   email,
@@ -15,8 +14,6 @@ export default function FormModal({
   setDob,
   setEmail,
   setPhone,
-  isEdit,
-  editStudentId,
 }) {
   return (
     <Modal show={visible} onHide={closeModal}>
