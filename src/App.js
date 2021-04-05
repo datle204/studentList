@@ -21,7 +21,7 @@ function App() {
   useEffect(() => {
     async function getUsers() {
       let pageLimit = 3;
-      let url = "http://localhost:3000/users";
+      let url = "https://studentlist2020.herokuapp.com/users";
       url += "?_page=" + 1;
       url += "&_limit=" + pageLimit;
       const res = await fetch(url);
@@ -35,7 +35,7 @@ function App() {
 
   // Gọi lên server để truyền dữ liệu vào
   async function setItem(item) {
-    return fetch("http://localhost:3000/users", {
+    return fetch("https://studentlist2020.herokuapp.com/users", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -46,14 +46,14 @@ function App() {
 
   // Gọi lên server để xóa dữ liệu
   async function deleteItem(userDeleteId) {
-    return fetch(`http://localhost:3000/users/${userDeleteId}`, {
+    return fetch(`https://studentlist2020.herokuapp.com/users/${userDeleteId}`, {
       method: "DELETE",
     }).then((res) => res.json());
   }
 
   // Gọi lên server để update dữ liệu
   async function editItem(item) {
-    return fetch(`http://localhost:3000/users/${editStudentId}`, {
+    return fetch(`https://studentlist2020.herokuapp.com/users/${editStudentId}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -147,7 +147,7 @@ function App() {
 
   async function sortItemsASC(pageId) {
     let pageLimit = 3;
-    let url = "http://localhost:3000/users";
+    let url = "https://studentlist2020.herokuapp.com/users";
     url += "?_page=" + pageId + "&_limit=" + pageLimit;
     url += "&_sort=name&_order=asc";
     const res = await fetch(url);
@@ -158,7 +158,7 @@ function App() {
 
   async function sortItemsDESC(pageId) {
     let pageLimit = 3;
-    let url = "http://localhost:3000/users";
+    let url = "https://studentlist2020.herokuapp.com/users";
     url += "?_page=" + pageId + "&_limit=" + pageLimit;
     url += "&_sort=name&_order=desc";
     const res = await fetch(url);
@@ -185,7 +185,7 @@ function App() {
 
   async function getPage(pageId) {
     let pageLimit = 3;
-    let url = "http://localhost:3000/users";
+    let url = "https://studentlist2020.herokuapp.com/users";
     url += "?_page=" + pageId + "&_limit=" + pageLimit;
 
     if (sortNameBtn === true) {
