@@ -319,3 +319,15 @@ li.pagiList {
 .sort {
   margin-left: 15px;
 }
+
+/* Button change page  */
+.change-page {
+  margin-bottom: 30px;
+}
+.change-to-login,
+.change-to-profile {
+  margin-right: 20px;
+  width: 100px;
+  border: none;
+  background-color: #85e89f;
+}

@@ -1,0 +1,19 @@
+/* Button change page  */
+
+h1 {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.change-page {
+  margin-bottom: 30px;
+
+}
+.change-to-login,
+.change-to-profile {
+  margin-right: 20px;
+  border: none;
+  background-color: #85e89f;
+  
+}
+

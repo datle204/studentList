@@ -1,8 +1,10 @@
+import {  Link } from "react-router-dom";
+
 export default function Body({
   students,
   openModal,
   openModalDelete,
-  sortName,
+  sortStudents,
 }) {
   const studentList = students.map((student) => (
     <tr key={student.id}>
@@ -13,7 +15,7 @@ export default function Body({
       <td>
         <button
           className="edit"
-          onClick={() => openModal("Edit Student", true, student.id)}
+          onClick={() => openModal("Edit User", true, student.id)}
         >
           Chỉnh sửa
         </button>
@@ -25,19 +27,23 @@ export default function Body({
   ));
   return (
     <div className="container">
-      <h1 className="title">Danh sách học viên</h1>
+      <div className ="change-page">
+        <Link to ="/login"><button className="change-to-login">Logout</button></Link>
+        <Link to = "/profile"><button className="change-to-login">Profile</button></Link>
+      </div>
+      <h1 className="title">Danh sách User</h1>
       <button
         id="add-student"
-        onClick={() => openModal("Add New Student", false)}
+        onClick={() => openModal("Add New User", false)}
       >
-        Thêm học viên
+        Thêm Mới
       </button>
       <table>
         <thead>
           <tr>
             <th>
               Họ tên
-              <button className="fa fa-sort sort" onClick={sortName}></button>
+              <button className="fa fa-sort sort" onClick={()=>sortStudents("name")}></button>
             </th>
             <th>Năm sinh</th>
             <th>Email</th>
@@ -45,6 +51,7 @@ export default function Body({
             <th></th>
           </tr>
         </thead>
+        
         <tbody id="content">{studentList}</tbody>
       </table>
     </div>

@@ -1,0 +1,15 @@
+.navbar{
+    width: 80%;
+    margin: auto;
+    padding: 0;
+}
+
+.navbar .nav-menu{
+    display: flex;
+    justify-content: space-between;
+}
+
+.nav-menu li {
+    list-style-type: none;
+    padding: 20px;
+}

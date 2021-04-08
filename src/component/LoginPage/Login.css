@@ -1,0 +1,76 @@
+/* Login form */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+a {
+  text-decoration: none;
+}
+
+/* CSS student list */
+
+.container {
+  width: 80%;
+  margin: auto;
+  margin-top: 100px;
+  margin-bottom: 30px;
+}
+
+.login-page {
+  width: 500px;
+  margin: auto;
+  border: 1px solid black;
+  padding: 20px;
+}
+
+.login-page h1.title {
+  text-align: center;
+  font-weight: bold;
+  padding-bottom: 15px;
+}
+
+.input-field {
+  width: 80%;
+  margin: auto;
+}
+
+.input-field input {
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+.check-field {
+  width: 80%;
+  margin: auto;
+  margin-bottom: 40px;
+}
+
+input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+}
+
+.check-field label {
+  width: 80%;
+  margin-left: 20px;
+  height: 0;
+  margin-bottom: 0px;
+  font-size: 16px;
+}
+
+.login-page a{
+  width: 120px;
+  display: block;
+  margin: auto;
+  text-align: center;
+  padding: 5px 15px;
+  border-radius: 5px;
+  background-color: #10d210cf;
+  color: black;
+}
+.login-page a:hover{
+  background-color: #88e288c2;
+  text-decoration: none;
+}
+
