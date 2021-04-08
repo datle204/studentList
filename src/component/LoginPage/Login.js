@@ -6,12 +6,33 @@ import { useHistory } from "react-router-dom";
 export default function Login() {
   const [loginEmail, setLoginEmail] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
+  const [isError, setIsError] = useState(false);
   const history = useHistory();
+
+  async function login() {
+    try {
+      const res = await checkLogin(loginEmail, loginPassword);
+      if (res.status === 200) {
+        history.push("/");
+      } else {
+        setIsError(true);
+      }
+    } catch (err) {
+      alert("co loi");
+    }
+  }
 
   return (
     <div className="container">
-      <form className="login-page">
+      <div className="login-page">
         <h1 className="title">Đăng Nhập</h1>
+        {isError && (
+          <div
+            style={{ color: "red", marginLeft: "50px", paddingBottom: "20px" }}
+          >
+            Email or Password incorrect
+          </div>
+        )}
         <div className="input-field">
           <input
             type="email"
@@ -34,13 +55,10 @@ export default function Login() {
           <input type="checkbox" id="remember-pass" />
           <label htmlFor="remember-pass">Ghi nhớ tài khoản</label>
         </div>
-        <button
-          type="button"
-          onClick={() => checkLogin(loginEmail, loginPassword, history)}
-        >
+        <button type="button" onClick={login}>
           Đăng nhập
         </button>
-      </form>
+      </div>
     </div>
   );
 }

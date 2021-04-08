@@ -1,4 +1,3 @@
-
 const API = "https://studentlist2020.herokuapp.com/users";
 const PAGE_LIMIT = 3;
 
@@ -42,21 +41,15 @@ export async function deleteUser(userDeleteId) {
 
 // CHECK LOGIN
 
-export async function checkLogin(loginEmail, loginPassword, history) {
-  
+export async function checkLogin(loginEmail, loginPassword) {
   return fetch("https://studentlist2020.herokuapp.com/login", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      email: loginEmail ,
-      password:  loginPassword ,
+      email: loginEmail,
+      password: loginPassword,
     }),
   })
-    .then(history.push("/"))
-   
-    .catch((error) => {
-      console.log("Error", error);
-    });
 }

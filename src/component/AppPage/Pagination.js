@@ -16,7 +16,11 @@ export default function Pagination({ changePage, totalItems, currentPage }) {
     >
       {pagiItem}
     </button>
+
   ));
 
-  return <li className="pagiList">{newPagiItems}</li>;
+  return <li className="pagiList">
+    
+    {newPagiItems}
+    </li>;
 }
