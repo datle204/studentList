@@ -15,7 +15,7 @@ export default function Login() {
     try {
       const res = await checkLogin(loginEmail, loginPassword);
       if (res.status === 200) {
-        history.push("/");
+        history.push("/app");
       } else {
         setIsError(true);
       }

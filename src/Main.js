@@ -26,11 +26,11 @@ export default function Main() {
           <Route path="/profile">
             <Profile />
           </Route>
-          <Route path="/login">
+          <Route path="/App">
+            <App />
+          <Route path="/">
             <Login />
           </Route>
-          <Route path="/">
-            <App />
           </Route>
         </Switch>
       </div>
