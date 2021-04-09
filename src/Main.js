@@ -26,9 +26,9 @@ export default function Main() {
           <Route path="/profile">
             <Profile />
           </Route>
-          <Route path="/App">
+          <Route path="/app">
             <App />
-          <Route path="/">
+          <Route path="/login">
             <Login />
           </Route>
           </Route>

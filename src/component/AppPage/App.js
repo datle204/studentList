@@ -17,7 +17,7 @@ function App() {
   // Check token
   const history = useHistory();
   if (localStorage.getItem("token") === null) {
-    history.push("/");
+    history.push("/login");
   }
 
   const [students, setStudentList] = useState([]);
