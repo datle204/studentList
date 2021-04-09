@@ -1,4 +1,4 @@
-import {  Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export default function Body({
   students,
@@ -27,15 +27,16 @@ export default function Body({
   ));
   return (
     <div className="container">
-      <div className ="change-page">
-        <Link to ="/login"><button className="change-to-login">Logout</button></Link>
-        <Link to = "/profile"><button className="change-to-login">Profile</button></Link>
+      <div className="change-page">
+        <Link to="/login">
+          <button className="change-to-login">Logout</button>
+        </Link>
+        <Link to="/profile">
+          <button className="change-to-login">Profile</button>
+        </Link>
       </div>
       <h1 className="title">Danh sách User</h1>
-      <button
-        id="add-student"
-        onClick={() => openModal("Add New User", false)}
-      >
+      <button id="add-student" onClick={() => openModal("Add New User", false)}>
         Thêm Mới
       </button>
       <table>
@@ -43,7 +44,10 @@ export default function Body({
           <tr>
             <th>
               Họ tên
-              <button className="fa fa-sort sort" onClick={()=>sortStudents("name")}></button>
+              <button
+                className="fa fa-sort sort"
+                onClick={() => sortStudents("name")}
+              ></button>
             </th>
             <th>Năm sinh</th>
             <th>Email</th>
@@ -51,7 +55,7 @@ export default function Body({
             <th></th>
           </tr>
         </thead>
-        
+
         <tbody id="content">{studentList}</tbody>
       </table>
     </div>

@@ -2,59 +2,64 @@ import axios from "axios";
 
 const apis = axios.create({
   baseURL: "https://studentlist2020.herokuapp.com",
-  headers: { Authorization: 'token' }
+  headers: { Authorization: "token" },
 });
 
 const DOMAIN = "https://studentlist2020.herokuapp.com";
 const USER_API = DOMAIN + "/users";
 const PAGE_LIMIT = 3;
 
-
 // DISPLAY LIST STUDENTS
 export async function getUsers(page = 1, sort, order) {
   let sortParam = sort ? `&_sort=${sort}` : "";
   let orderParam = sort ? `&_order=${order}` : "";
 
-  apis
-    .get(`/users?_page=${page}&_limit=${PAGE_LIMIT}${sortParam}${orderParam}`,{
-      headers:{'Authorization' : `Bearer ${localStorage.getItem('token')}`},
-    })
-    
-    .then((res)=> {
-      
-      console.log(res);
-      
-    })
-    .catch((err) => console.log(err)
-    );
-   
-    return {users:[], totalCount:1};
+  const res = await apis.get(
+    `/users?_page=${page}&_limit=${PAGE_LIMIT}${sortParam}${orderParam}`,
+    {
+      headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+    }
+  );
+  let users = res.data;
+  let totalCount = res.headers["x-total-count"];
+  return { users, totalCount };
 }
+
 // ADD NEW STUDENT
 export async function createUser(user) {
-  return fetch(USER_API, {
-    method: "POST",
+  await axios({
+    method: "post",
+    url: USER_API,
+    data: user,
+    auth: window.$auth,
     headers: {
-      "Content-Type": "application/json",
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
     },
-    body: JSON.stringify(user),
-  }).then((res) => res.json());
+  });
 }
+
 // UPDATE STUDENT
 export async function updateUser(user, editStudentId) {
-  return fetch(`${USER_API}/${editStudentId}`, {
-    method: "PUT",
+  await axios({
+    method: "put",
+    url: `${USER_API}/${editStudentId}`,
+    data: user,
+    auth: window.$auth,
     headers: {
-      "Content-Type": "application/json",
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
     },
-    body: JSON.stringify(user),
-  }).then((res) => res.json());
+  });
 }
 // DELETE STUDENT
 export async function deleteUser(userDeleteId) {
-  return fetch(`${USER_API}/${userDeleteId}`, {
-    method: "DELETE",
-  }).then((res) => res.json());
+  await axios({
+    method: "delete",
+    url: `${USER_API}/${userDeleteId}`,
+    auth: window.$auth,
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
+    },
+  });
 }
 
 // CHECK LOGIN

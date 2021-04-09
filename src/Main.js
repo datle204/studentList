@@ -5,6 +5,7 @@ import Profile from "./component/ProfilePage/Profile";
 import "./Main.css";
 
 export default function Main() {
+
   return (
     <Router>
       <div>

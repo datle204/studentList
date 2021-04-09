@@ -3,8 +3,9 @@ import { useState } from "react";
 import { checkLogin } from "../api";
 import { useHistory } from "react-router-dom";
 
-
 export default function Login() {
+  localStorage.clear();
+
   const [loginEmail, setLoginEmail] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
   const [isError, setIsError] = useState(false);

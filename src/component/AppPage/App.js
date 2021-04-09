@@ -9,10 +9,17 @@ import { getUsers, createUser, updateUser, deleteUser } from "../api";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "font-awesome/css/font-awesome.min.css";
 
+import { useHistory } from "react-router-dom";
+
 function App() {
   // STATE
 
-  // State list students
+  // Check token
+  const history = useHistory();
+  if (localStorage.getItem("token") === null) {
+    history.push("/login");
+  }
+
   const [students, setStudentList] = useState([]);
   // State modal delete
   const [modalDelete, modalDeleteVisible] = useState(false);
@@ -136,6 +143,7 @@ function App() {
   async function changePage(pageId) {
     let order = checkSort ? "asc" : "desc";
     const { users } = await getUsers(pageId, sortColumn, order);
+    console.log(users);
     setCurrentPage(pageId);
     setStudentList(users);
   }
