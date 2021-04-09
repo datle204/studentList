@@ -44,6 +44,8 @@ a {
   width: 80%;
   margin: auto;
   margin-bottom: 40px;
+  display: flex;
+  align-items: center;
 }
 
 input[type="checkbox"] {
