@@ -4,7 +4,7 @@ import { checkLogin } from "../api";
 import { useHistory } from "react-router-dom";
 
 export default function Login() {
-  localStorage.clear();
+  localStorage.removeItem("token");
 
   const [loginEmail, setLoginEmail] = useState("");
   const [loginPassword, setLoginPassword] = useState("");

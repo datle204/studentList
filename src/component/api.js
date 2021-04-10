@@ -14,15 +14,27 @@ export async function getUsers(page = 1, sort, order) {
   let sortParam = sort ? `&_sort=${sort}` : "";
   let orderParam = sort ? `&_order=${order}` : "";
 
-  const res = await apis.get(
+  return apis.get(
     `/users?_page=${page}&_limit=${PAGE_LIMIT}${sortParam}${orderParam}`,
     {
       headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
     }
-  );
-  let users = res.data;
-  let totalCount = res.headers["x-total-count"];
-  return { users, totalCount };
+  ).then((res)=>{
+    let users = res.data;
+    let totalCount = res.headers["x-total-count"];
+    return { users, totalCount };
+  })
+  
+
+  // const res = await apis.get(
+  //   `/users?_page=${page}&_limit=${PAGE_LIMIT}${sortParam}${orderParam}`,
+  //   {
+  //     headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+  //   }
+  // );
+  // let users = res.data;
+  // let totalCount = res.headers["x-total-count"];
+  // return { users, totalCount };
 }
 
 // ADD NEW STUDENT
