@@ -2,20 +2,35 @@ import "./Login.css";
 import { useState } from "react";
 import { checkLogin } from "../api";
 import { useHistory } from "react-router-dom";
+import {useDispatch} from "react-redux";
+import {updateName, updateAvatar} from "../../features/userSlice";
 
 export default function Login() {
   localStorage.removeItem("token");
 
+  
   const [loginEmail, setLoginEmail] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
   const [isError, setIsError] = useState(false);
+
   const history = useHistory();
+
+  const dispatch = useDispatch();
 
   async function login() {
     try {
       const res = await checkLogin(loginEmail, loginPassword);
       if (res.status === 200) {
         history.push("/");
+        let username= res.data.name;
+        let avatar = res.data.avatar;
+        localStorage.setItem("username", username);
+        localStorage.setItem("avatar", avatar);
+        // return username;
+        dispatch(updateName(localStorage.getItem("username")));
+        dispatch(updateAvatar(localStorage.getItem("avatar")));
+
+
       } else {
         setIsError(true);
       }

@@ -1,4 +1,6 @@
 import { Link } from "react-router-dom";
+import { selectUsername, selectUserAvatar } from "../../features/userSlice";
+import {useSelector} from 'react-redux';
 
 export default function Body({
   students,
@@ -6,6 +8,10 @@ export default function Body({
   openModalDelete,
   sortStudents,
 }) {
+
+  const username = useSelector(selectUsername);
+  const avatar = useSelector(selectUserAvatar)
+
   const studentList = students.map((student) => (
     <tr key={student.id}>
       <td>{student.name}</td>
@@ -27,6 +33,10 @@ export default function Body({
   ));
   return (
     <div className="container">
+      <div className="user-account">
+        <p className="user-name">{username}</p>
+        <img src={avatar} alt="avatar" className="user-avatar"/>
+      </div>
       <div className="change-page">
         <Link to="/login">
           <button className="change-to-login">Logout</button>
